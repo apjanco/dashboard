@@ -7,8 +7,6 @@ import pandas as pd
 # for date-Slider
 import math
 import plotly.graph_objs as go
-import jupyterlab_dash
-import dash_html_components as html
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -193,6 +191,6 @@ def update_figure(value):
         )
     }
 
-viewer = jupyterlab_dash.AppViewer()
 
-viewer.show(app)
+if __name__ == '__main__':
+    app.run_server(debug=True)
