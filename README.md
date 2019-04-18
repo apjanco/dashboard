@@ -12,7 +12,7 @@ The dashboard has three elements, a date slider, a datatable and a scatterplot. 
 
 My project partner is particularly interested in the relationships between texts, authors and journals.  How do networks of authors explain similarities in the texts published by a particular journal?  Are there differences in the use of words and phrases (lexical features) that clearly distinguish one journal from another?  In order to visualize these differences, I am using a Python library called [scattertext](https://github.com/JasonKessler/scattertext).  The scattertext explorer creates a graph that helps to visualize what features most distinguish a text or category of texts from the rest of the dataset. For example, what terms best distinguish texts published in *Novyi mir* (New World) as opposed to all other journals?   
 
-![](https://github.com/apjanco/dashboard/raw/master/textviz.jpg)
+[![](https://github.com/apjanco/dashboard/raw/master/textviz.jpg)](https://github.com/apjanco/dashboard/raw/master/sample100.html)
 
 As an experiment, I created a script with scattertext that generates a visualization using the full text of articles from the corpus and their journal of publication.  Scattertext uses [spaCy](https://spacy.io/modelsa) language models.  Russian is part of their multi-language model, but in testing it provided poor results and often treated the text as Serbian or English.  I found that the [Russian spaCy model from Yuri Baburov](https://github.com/buriy/spacy-ru) was far more accurate.  
 
