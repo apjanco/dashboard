@@ -55,8 +55,7 @@ html = st.produce_scattertext_explorer(corpus,
 open("full_output_novyi_mir.html", 'wb').write(html.encode('utf-8'))
 ```
 
-Given the problems using scattertext on larger corpora, another possible lead to follow is a library called [shifterator](https://github.com/ryanjgallagher/shifterator).  This is a package for creating word shift graphs, which are "vertical bart charts that quantify which words contribute to a pairwise difference between two texts and how they contribute."  Before a word shift graph can be generated, I will need to write a script to process the texts and return dictionaries with "word types as keys and frequencies as values."
-The example graphs for shifterator are compelling and could offer an effective alternative to scattertext.
+Given the problems using scattertext on larger corpora, another possible lead to follow is a library called [shifterator](https://github.com/ryanjgallagher/shifterator).  This is a package for creating word shift graphs, which are "vertical bart charts that quantify which words contribute to a pairwise difference between two texts and how they contribute."  This seems like a promising lead, but the library is still under development and still needs to be packaged. Before a word shift graph could be generated, I will also need to write a script to process the texts and return dictionaries with "word types as keys and frequencies as values." The example graphs for shifterator are compelling and could offer an effective alternative to scattertext.  However, given the problems faced by scattertext's reliance on D3 in the browser and the amount of data being plotted, bqplot, matplotlib or plotly may be better options. 
 
 *example word shift graph from shifterator*
 ![](https://github.com/ryanjgallagher/shifterator/raw/master/figures/presidential-speeches_smaller.png)
