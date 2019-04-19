@@ -24,7 +24,7 @@ My project partner is particularly interested in the relationships between texts
 
 As an experiment, I created a script with scattertext that generates a visualization using the full text of articles from the corpus and their journal of publication.  Scattertext uses [spaCy](https://spacy.io/modelsa) language models.  Russian is part of their multi-language model, but in testing it provided poor results and often treated the text as Serbian or English.  I found that the [Russian spaCy model from Yuri Baburov](https://github.com/buriy/spacy-ru) was far more accurate.  
 
-Addionally, Scattertext has a very large memory footprint. I have only successfully created a visualization for a random sample of 100 texts.  The readme states that scattertext is only for "small-to-medium-sized corpora."  At the time of writing, I am still trying to run the script for the full corpus.  It has been running for 116 hours on a machine with a 6-core Xeon processor and 64GB of RAM.  I created a 2TB swapfile and the process is currently using 100GB of memory.       
+Addionally, Scattertext has a very large memory footprint. The readme states that scattertext is only for "small-to-medium-sized corpora."  I was able to process the entire corpus.  It took three days using a machine with a 6-core Xeon processor and 64GB of RAM. One the first run it ran out of memory, so I created a 2TB swapfile, The process used as much as 100GB of memory.  The end result is a 10GB html file which I am not able to load in the browser.         
 
 ```python 
 import scattertext as st
