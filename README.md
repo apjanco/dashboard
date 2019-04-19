@@ -22,7 +22,7 @@ My project partner is particularly interested in the relationships between texts
 *Sample of 100 texts. Click on the image to load the interactive page, please note that is takes 10-15 minutes to load in the browser*
 [![](https://github.com/apjanco/dashboard/raw/master/textviz.jpg)](http://htmlpreview.github.io/?https://www.github.com/apjanco/dashboard/raw/master/sample100.html)
 
-*Sample of 200 texts.  Html file is too large to upload to GitHub.  Image only.
+*Sample of 200 texts.  Html file is too large to upload to GitHub.  Image only.*
 ![](https://github.com/apjanco/dashboard/raw/master/220_nzh.png) 
 
 As an experiment, I created a script with scattertext that generates a visualization using the full text of articles from the corpus and their journal of publication.  Scattertext uses [spaCy](https://spacy.io/modelsa) language models.  Russian is part of their multi-language model, but in testing it provided poor results and often treated the text as Serbian or English.  I found that the [Russian spaCy model from Yuri Baburov](https://github.com/buriy/spacy-ru) was far more accurate.  
