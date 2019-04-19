@@ -58,7 +58,7 @@ I tested various samples to find a threshold for the scattertext visualization. 
 [![](https://github.com/apjanco/dashboard/raw/master/textviz.jpg)](http://htmlpreview.github.io/?https://www.github.com/apjanco/dashboard/raw/master/sample100.html)
 
 *Random sample of 200 texts. Image only.*
-![](https://github.com/apjanco/dashboard/raw/master/220_nzh.png) 
+[![](https://github.com/apjanco/dashboard/raw/master/220_nzh.png)](https://github.com/apjanco/dashboard/raw/master/220_nzh.png)
 
 Nonetheless, scattertext can be used to produce useful data about the entire text corpus.  Using the following, we can print out the 100 most-distinctive terms for the journal *Novyi Mir*.    
 ```python
