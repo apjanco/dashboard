@@ -58,7 +58,7 @@ html = st.produce_scattertext_explorer(corpus,
 open("full_output_novyi_mir.html", 'wb').write(html.encode('utf-8'))
 ```
 
-I tested various samples to find a threshold for the scattertext visualization.  Files for 1000 and 500 text were too large to load in the browser.  Nonetheless, scattertext can be used to produce useful data about the text corpus.  Using the following, we can print out the 100 most-distinctive terms for the journal *Novyi Mir*.    
+I tested various samples to find a threshold for the scattertext visualization.  Files for 1000 and 500 text were too large to load in the browser.  A sample of 200 seems to be a good size for scattertexts. Nonetheless, scattertext can be used to produce useful data about the entire text corpus.  Using the following, we can print out the 100 most-distinctive terms for the journal *Novyi Mir*.    
 ```python
 term_freq_df = corpus.get_term_freq_df()
 term_freq_df['Новый Мир freq'] = corpus.get_scaled_f_scores('Новый Мир')
