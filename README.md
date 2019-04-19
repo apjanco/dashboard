@@ -1,4 +1,4 @@
-# Introduction
+# Exploring Texts from Russian Journals
 
 *click on the image to load the interactive dashboard*
 [![](https://github.com/apjanco/dashboard/raw/master/Screen%20Shot%202019-04-11%20at%202.57.13%20PM.png)](http://104.236.220.106:8000/)
@@ -18,12 +18,6 @@ The current dashboard was created with [Dash](https://plot.ly), which serves the
 The dashboard has three elements, a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working, but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  The scatterplot shows the number of total articles for a journal on the y axis and authors' names on the x axis.  The points are color coded by journal.  This makes it possible to identify clusers of authors that are all associated with a common journal.  This is a key interest for my researcher and I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
 
 My project partner is particularly interested in the relationships between texts, authors and journals. Are there differences in the use of words and phrases (lexical features) that clearly distinguish one journal from another?  In order to visualize these differences, I am using a Python library called [scattertext](https://github.com/JasonKessler/scattertext) by Jason Kessler (see [Kessler 2017](https://arxiv.org/pdf/1703.00565.pdf)).  The scattertext explorer creates a graph that helps to visualize what features most distinguish a text or category of texts from the rest of the dataset. For example, what terms best distinguish texts published in *Novyi mir* (New World) as opposed to all other journals?   
-
-*Sample of 100 texts. Click on the image to load the interactive page, please note that is takes 10-15 minutes to load in the browser*
-[![](https://github.com/apjanco/dashboard/raw/master/textviz.jpg)](http://htmlpreview.github.io/?https://www.github.com/apjanco/dashboard/raw/master/sample100.html)
-
-*Sample of 200 texts.  Html file is too large to upload to GitHub.  Image only.*
-![](https://github.com/apjanco/dashboard/raw/master/220_nzh.png) 
 
 As an experiment, I created a script with scattertext that generates a visualization using the full text of articles from the corpus and their journal of publication.  Scattertext uses [spaCy](https://spacy.io/modelsa) language models.  Russian is part of their multi-language model, but in testing it provided poor results and often treated the text as Serbian or English.  I found that the [Russian spaCy model from Yuri Baburov](https://github.com/buriy/spacy-ru) was far more accurate.  
 
@@ -58,7 +52,15 @@ html = st.produce_scattertext_explorer(corpus,
 open("full_output_novyi_mir.html", 'wb').write(html.encode('utf-8'))
 ```
 
-I tested various samples to find a threshold for the scattertext visualization.  Files for 1000 and 500 text were too large to load in the browser.  A sample of 200 seems to be a good size for scattertexts. Nonetheless, scattertext can be used to produce useful data about the entire text corpus.  Using the following, we can print out the 100 most-distinctive terms for the journal *Novyi Mir*.    
+I tested various samples to find a threshold for the scattertext visualization.  Files for 1000 and 500 text were too large to load in the browser.  A sample of 200 seems to be a good size for scattertexts. 
+
+*Random sample of 100 texts. Click on the image to load the interactive page, please note that is takes 10-15 minutes to load in the browser*
+[![](https://github.com/apjanco/dashboard/raw/master/textviz.jpg)](http://htmlpreview.github.io/?https://www.github.com/apjanco/dashboard/raw/master/sample100.html)
+
+*Random sample of 200 texts. Image only.*
+![](https://github.com/apjanco/dashboard/raw/master/220_nzh.png) 
+
+Nonetheless, scattertext can be used to produce useful data about the entire text corpus.  Using the following, we can print out the 100 most-distinctive terms for the journal *Novyi Mir*.    
 ```python
 term_freq_df = corpus.get_term_freq_df()
 term_freq_df['Новый Мир freq'] = corpus.get_scaled_f_scores('Новый Мир')
