@@ -68,6 +68,9 @@ pprint(list(term_freq_df.sort_values(by='Новый Мир freq', ascending=Fals
 ```
 This method can be repeated programmatically for all of the journals in the corpus using all of the texts and not just a sample.  This method can be applied to other categories as well simply by changing the value in `category_col` in CorpusFromPandas() to author, year, genre and so on.  What terms most distinguish poetry from verse?  What terms distinguish an author?    
 
+*example of a plot for a single author*
+![](https://github.com/apjanco/dashboard/raw/master/stepanov.png)
+
 Another possible lead to follow is a library called [shifterator](https://github.com/ryanjgallagher/shifterator).  This is a package by a Ph.D. student at Northeastern University for creating word shift graphs, which are "vertical bart charts that quantify which words contribute to a pairwise difference between two texts and how they contribute."  This seems like a promising lead, but the library is still under development and still needs to be packaged. Before a word shift graph could be generated, I will also need to write a script to process the texts and return dictionaries with "word types as keys and frequencies as values." The example graphs for shifterator are compelling and could offer an effective alternative to scattertext.  However, given the problems faced by scattertext's reliance on D3 in the browser and the amount of data being plotted, bqplot, matplotlib or plotly may be better options. 
 
 *example word shift graph from shifterator*
