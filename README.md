@@ -55,7 +55,15 @@ html = st.produce_scattertext_explorer(corpus,
 open("full_output_novyi_mir.html", 'wb').write(html.encode('utf-8'))
 ```
 
-Given the problems using scattertext on larger corpora, another possible lead to follow is a library called [shifterator](https://github.com/ryanjgallagher/shifterator).  This is a package for creating word shift graphs, which are "vertical bart charts that quantify which words contribute to a pairwise difference between two texts and how they contribute."  This seems like a promising lead, but the library is still under development and still needs to be packaged. Before a word shift graph could be generated, I will also need to write a script to process the texts and return dictionaries with "word types as keys and frequencies as values." The example graphs for shifterator are compelling and could offer an effective alternative to scattertext.  However, given the problems faced by scattertext's reliance on D3 in the browser and the amount of data being plotted, bqplot, matplotlib or plotly may be better options. 
+I tested various samples to find a threshold for the scattertext visualization.  Files for 1000 and 500 text were too large to load in the browser.  Nonetheless, scattertext can be used to produce useful data about the text corpus.  Using the following, we can print out the 100 most-distinctive terms for the journal *Novyi Mir*.    
+```python
+term_freq_df = corpus.get_term_freq_df()
+term_freq_df['Новый Мир freq'] = corpus.get_scaled_f_scores('Новый Мир')
+pprint(list(term_freq_df.sort_values(by='Новый Мир freq', ascending=False).index[:100]))
+```
+This method can be repeated programmatically for all of the journals in the corpus using all of the texts and not just a sample.  This method can be applied to other categories as well simply by changing the value in `category_col` in CorpusFromPandas() to author, year, genre and so on.  What terms most distinguish poetry from verse?  What terms distinguish an author?    
+
+Another possible lead to follow is a library called [shifterator](https://github.com/ryanjgallagher/shifterator).  This is a package by a Ph.D. student at Northeastern University for creating word shift graphs, which are "vertical bart charts that quantify which words contribute to a pairwise difference between two texts and how they contribute."  This seems like a promising lead, but the library is still under development and still needs to be packaged. Before a word shift graph could be generated, I will also need to write a script to process the texts and return dictionaries with "word types as keys and frequencies as values." The example graphs for shifterator are compelling and could offer an effective alternative to scattertext.  However, given the problems faced by scattertext's reliance on D3 in the browser and the amount of data being plotted, bqplot, matplotlib or plotly may be better options. 
 
 *example word shift graph from shifterator*
 ![](https://github.com/ryanjgallagher/shifterator/raw/master/figures/presidential-speeches_smaller.png)
