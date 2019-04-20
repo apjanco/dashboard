@@ -15,7 +15,21 @@ For current purposes, I created a CSV file of the text metadata, which can be do
 
 The current dashboard was created with [Dash](https://plot.ly), which serves the plotly Python library using Flask and React.js. You can find the dashboard [here](http://104.236.220.106:8000/). I have also included [app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py) which will run locally with dash and pandas.  Just `pip install dash` in your preferred virtualenv, clone the repository, `cd dashboard` and then `$ python app.py`.  The current app is running with Flask. I am currently working to serve the application with nginx and uWsgi.  I have also experimented with a [django-plotly-dash](https://github.com/GibbsConsulting/django-plotly-dash) for adding Dash apps to Django projects.       
 
-The dashboard has three elements, a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  The scatterplot shows the number of total articles for a journal on the y-axis and authors' names on the x-axis.  The points are color-coded by journal. This makes it possible to identify clusters of authors that published with a common journal.  This is a key interest for my researcher and I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
+The dashboard has three elements, a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  
+
+I believe that the scatterplot shows the number of total articles for a journal on the y-axis and authors' names on the x-axis. As the dates change in the slider, the callback function updates the dataframe used in the scatterplot: 
+
+[app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py)
+```python
+
+# filtered dataframe given the year in the slider
+filtered_df = df[df.year.isin(list(uniqueYear[:value+1]))]
+
+#data for x axis
+year = filtered_df['year'].value_counts().to_frame()
+```
+
+The points are color-coded by journal. This makes it possible to identify clusters of authors that published with a common journal.  This is a key interest for my researcher and I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
 
 My project partner is particularly interested in relationships between texts, authors and journals. Are there differences in the use of words and phrases (lexical features) that clearly distinguish one journal from another?  In order to visualize these differences, I am using a Python library called [scattertext](https://github.com/JasonKessler/scattertext) by Jason Kessler (see [Kessler 2017](https://arxiv.org/pdf/1703.00565.pdf)).  The scattertext explorer creates a graph that helps to visualize what features most distinguish a text or category of texts from the rest of the dataset. For example, what terms best distinguish texts published in *Novyi mir* (New World) as opposed to all other journals?   
 
