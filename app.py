@@ -167,10 +167,10 @@ def update_figure(value):
 
     traces = []
     for i in filtered_df.journal.unique():
-            df_by_continent = filtered_df[filtered_df['journal'] == i]
+            df_by_journal = filtered_df[filtered_df['journal'] == i]
             traces.append(go.Scatter(
-                x=df_by_continent['author'],
-                y=df_by_continent.count(),
+                x=df_by_journal['author'],
+                y=df_by_journal.count(),
                 mode='markers',
                 opacity=0.7,
                 marker={
