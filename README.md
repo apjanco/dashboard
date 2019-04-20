@@ -29,7 +29,7 @@ filtered_df = df[df.year.isin(list(uniqueYear[:value+1]))]
 year = filtered_df['year'].value_counts().to_frame()
 ```
 
-The points are color-coded by journal. This makes it possible to identify clusters of authors that published with a common journal.  This is a key interest for my researcher and I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
+The points are color-coded by journal. This makes it possible to identify clusters of authors that published with a common journal.  This is a key interest for my researcher. I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
 
 My project partner is particularly interested in relationships between texts, authors and journals. Are there differences in the use of words and phrases (lexical features) that clearly distinguish one journal from another?  In order to visualize these differences, I am using a Python library called [scattertext](https://github.com/JasonKessler/scattertext) by Jason Kessler (see [Kessler 2017](https://arxiv.org/pdf/1703.00565.pdf)).  The scattertext explorer creates a graph that helps to visualize what features most distinguish a text or category of texts from the rest of the dataset. For example, what terms best distinguish texts published in *Novyi mir* (New World) as opposed to all other journals?   
 
