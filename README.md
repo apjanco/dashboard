@@ -11,13 +11,13 @@ There is a website in Russia called [Journal Room](http://magazines.russ.ru/) (*
 [![](https://github.com/apjanco/dashboard/raw/master/2graphs.gif)](https://github.com/apjanco/zhz-dashboard/raw/master/2graphs.gif)
 The chart above shows that the journals *Banner* and *New World* have, by far, the largest number of texts in the corpus.  By genre, the most prominent types of text are poetry (*stikhi* and *stikhotvoreniia*) and stories (*rasskaz* and *povest'*).  Further normalization of the genre titles will lend better results.    
 
-For current purposes, I created a CSV file of the text metadata, which can be downloaded from [here](https://haverford.box.com/shared/static/jwp9pd68ffl7tneh9hjob943ikcqg6x4.csv).  The metadata dataset is free to use and distribute.  The full-text corpus contains content that could be, but is unlikely, restricted by Section IV of the Civil Code of the Russian Federation. Online content is largely interpreted by Russian law as an open space where content is subject to "free use"([Sobol 2016](https://rm.coe.int/1680783347)). The footer of each page shows `© 1996 - 2017 Journal Room` and the site lists a contact. Further research is required, and it would be worth contacting Journal Room before sharing the full dataset, but it is likely that use of the corpus for research falls under the legal understanding of "free use."     
+For current purposes, I created a CSV file of the text metadata, which can be downloaded from [here](https://haverford.box.com/shared/static/jwp9pd68ffl7tneh9hjob943ikcqg6x4.csv).  The metadata dataset is free to use and distribute.  The full-text corpus contains content that could be restricted by Section IV of the Civil Code of the Russian Federation. Online content is largely interpreted by Russian law as an open space where content is subject to "free use" ([Sobol 2016](https://rm.coe.int/1680783347)). The footer of each page shows © 1996 - 2017 Journal Room. It would be worth contacting Journal Room before sharing the full dataset, but it is likely that use of the corpus for research falls under the legal understanding of "free use."     
 
-The current dashboard was created with [Dash](https://plot.ly), which serves the plotly Python library using Flask and React.js.  I have included [app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py) which will run locally with dash and pandas.  Just `pip install dash` in your preferred virtualenv, clone the repository, `cd dashboard` and then `$ python app.py`.  I am currently working on serving the application with nginx and uWsgi.  I have also experimented with a Django app for adding Dash apps to Django projects.  I hope to have this working soon.  I have had a lot of trouble with Idyll and bqplot.  I tried but was not able to run dash in a jupyter notebook.       
+The current dashboard was created with [Dash](https://plot.ly), which serves the plotly Python library using Flask and React.js.  I have included [app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py) which will run locally with dash and pandas.  Just `pip install dash` in your preferred virtualenv, clone the repository, `cd dashboard` and then `$ python app.py`.  I am currently working on serving the application with nginx and uWsgi.  I have also experimented with a [django-plotly-dash](https://github.com/GibbsConsulting/django-plotly-dash) for adding Dash apps to Django projects.  I hope to have this working soon.  I have had a lot of trouble with Idyll and bqplot.  I tried but was not able to run dash in a jupyter notebook.       
 
-The dashboard has three elements, a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  The scatterplot shows the number of total articles for a journal on the y-axis and authors' names on the x-axis.  The points are color-coded by journal.  This makes it possible to identify clusters of authors that are all associated with a common journal.  This is a key interest for my researcher and I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
+The dashboard has three elements, a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  The scatterplot shows the number of total articles for a journal on the y-axis and authors' names on the x-axis.  The points are color-coded by journal. This makes it possible to identify clusters of authors that published with a common journal.  This is a key interest for my researcher and I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
 
-My project partner is particularly interested in the relationships between texts, authors and journals. Are there differences in the use of words and phrases (lexical features) that clearly distinguish one journal from another?  In order to visualize these differences, I am using a Python library called [scattertext](https://github.com/JasonKessler/scattertext) by Jason Kessler (see [Kessler 2017](https://arxiv.org/pdf/1703.00565.pdf)).  The scattertext explorer creates a graph that helps to visualize what features most distinguish a text or category of texts from the rest of the dataset. For example, what terms best distinguish texts published in *Novyi mir* (New World) as opposed to all other journals?   
+My project partner is particularly interested in relationships between texts, authors and journals. Are there differences in the use of words and phrases (lexical features) that clearly distinguish one journal from another?  In order to visualize these differences, I am using a Python library called [scattertext](https://github.com/JasonKessler/scattertext) by Jason Kessler (see [Kessler 2017](https://arxiv.org/pdf/1703.00565.pdf)).  The scattertext explorer creates a graph that helps to visualize what features most distinguish a text or category of texts from the rest of the dataset. For example, what terms best distinguish texts published in *Novyi mir* (New World) as opposed to all other journals?   
 
 As an experiment, I created a script with scattertext that generates a visualization using the full text of articles from the corpus and their journal of publication.  Scattertext uses [spaCy](https://spacy.io/modelsa) language models.  Russian is part of their multi-language model, but in testing, it provided poor results and often treated the text as Serbian or English.  I found that the [Russian spaCy model from Yuri Baburov](https://github.com/buriy/spacy-ru) was far more accurate.  
 
@@ -26,29 +26,36 @@ Additionally, Scattertext has a very large memory footprint. The readme states t
 ```python 
 import scattertext as st
 import spacy
-from pprint import pprint
 import mysql.connector as sql
 import pandas as pd
 import numpy as np
 
+# Create a connection to the MySql database server
 db_connection = sql.connect(host='localhost', database='', user='', password='')
 
+# Create a pandas dataframe from a sql query.  In this case we're selecting 100 random entries with text
 df = pd.read_sql("SELECT journal, title, text FROM catalog_tableofcontents WHERE text NOT LIKE '' ORDER BY RAND() LIMIT 100", con=db_connection)
 df = df.replace(['', 'null'], [np.nan, np.nan])
+
+# Load the spaCy Russian language model
 nlp = spacy.load('spacy-ru/ru2')
 nlp.add_pipe(nlp.create_pipe('sentencizer'))
 
+# Create a scattertext object using the texts and journal categories.
 corpus = st.CorpusFromPandas(df,
                              category_col='journal',
                              text_col='text',
                              nlp=nlp).build()
 
+# Generate the D3 visualization
 html = st.produce_scattertext_explorer(corpus,
           category='Новый Мир',
           category_name='Новый Мир',
           not_category_name='Other',
           width_in_pixels=1000,
           metadata=df['title'])
+          
+# Save the html to a file 
 open("full_output_novyi_mir.html", 'wb').write(html.encode('utf-8'))
 ```
 
