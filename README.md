@@ -26,6 +26,7 @@ I believe that the scatterplot shows the number of total articles for a journal 
 I really like the clusters, but I do not fully understand what Pandas is doing to the data and what's being displayed.  Nonetheless, it seems to be what I'm trying to get. 
 
 [app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py)
+*based on example from the [Dash documentation](https://dash.plot.ly/getting-started-part-2)*
 ```python
 @app.callback(
     Output('graph-with-slider', 'figure'),
