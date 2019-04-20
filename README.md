@@ -97,6 +97,9 @@ open("full_output_novyi_mir.html", 'wb').write(html.encode('utf-8'))
 
 I tested various samples to find a threshold for the scattertext visualization.  Files with 1000 and 500 texts were too large to load in the browser.  A sample of 200 seems to be a good size for scattertexts. 
 
+*How to read a scattertext visualization*
+[![](https://github.com/apjanco/dashboard/raw/master/example.gif)](https://github.com/apjanco/dashboard/raw/master/example.gif) 
+
 *Random sample of 100 texts comparing New World against all other journals. Click on the image to load the interactive page, please note that it takes 10-15 minutes to load in the browser*
 [![](https://github.com/apjanco/dashboard/raw/master/textviz.jpg)](http://htmlpreview.github.io/?https://www.github.com/apjanco/dashboard/raw/master/sample100.html)
 
