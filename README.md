@@ -61,10 +61,10 @@ open("full_output_novyi_mir.html", 'wb').write(html.encode('utf-8'))
 
 I tested various samples to find a threshold for the scattertext visualization.  Files for 1000 and 500 text were too large to load in the browser.  A sample of 200 seems to be a good size for scattertexts. 
 
-*Random sample of 100 texts. Click on the image to load the interactive page, please note that it takes 10-15 minutes to load in the browser*
+*Random sample of 100 texts comparing New World against all other journals. Click on the image to load the interactive page, please note that it takes 10-15 minutes to load in the browser*
 [![](https://github.com/apjanco/dashboard/raw/master/textviz.jpg)](http://htmlpreview.github.io/?https://www.github.com/apjanco/dashboard/raw/master/sample100.html)
 
-*Random sample of 200 texts. Image only.*
+*Random sample of 200 texts comparing New World against all other journals. Image only.*
 [![](https://github.com/apjanco/dashboard/raw/master/220_nzh.png)](https://github.com/apjanco/dashboard/raw/master/220_nzh.png)
 
 Nonetheless, scattertext can be used to produce useful data about the entire text corpus.  Using the following, we can print out the 100 most-distinctive terms for the journal *Novyi Mir*.    
