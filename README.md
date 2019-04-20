@@ -31,11 +31,11 @@ year = filtered_df['year'].value_counts().to_frame()
 
 The points are color-coded by journal. This makes it possible to identify clusters of authors that published with a common journal.  This is a key interest for my researcher. I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
 
-My project partner is particularly interested in relationships between texts, authors, and journals. Are there differences in the use of words and phrases (lexical features) that clearly distinguish one journal from another?  In order to visualize these differences, I am using a Python library called [scattertext](https://github.com/JasonKessler/scattertext) by Jason Kessler (see [Kessler 2017](https://arxiv.org/pdf/1703.00565.pdf)).  The scattertext explorer creates a graph that helps to visualize what features most distinguish a text or category of texts from the rest of the dataset. For example, what terms best distinguish texts published in *Novyi mir* (*New World*) as opposed to all other journals?   
+My project partner is particularly interested in relationships between texts, authors, and journals. Are there differences in the use of words and phrases (lexical features) that clearly distinguish one journal from another?  In order to visualize these differences, I am using a Python library called [scattertext](https://github.com/JasonKessler/scattertext) by Jason Kessler (see [Kessler 2017](https://arxiv.org/pdf/1703.00565.pdf)). The scattertext explorer creates a graph that helps to visualize what features most distinguish a text or category of texts from the rest of the dataset. For example, what terms best distinguish texts published in *Novyi mir* (*New World*) as opposed to all other journals?   
 
-As an experiment, I created a script with scattertext that generates a visualization using the full text of articles from the corpus and their journal of publication.  Scattertext uses [spaCy](https://spacy.io/modelsa) language models.  Russian is part of their multi-language model, but in testing, it provided poor results and often treated the text as Serbian or English.  I found that the [Russian spaCy model from Yuri Baburov](https://github.com/buriy/spacy-ru) was far more accurate.  
+As an experiment, I created a script with scattertext that generates a visualization using the full text of articles and their journal of publication.  Scattertext uses [spaCy](https://spacy.io/modelsa) statistical language models. Russian is part of their multi-language model, but in testing, it provided poor results and often treated the text as Serbian or English. I found that the [Russian spaCy model from Yuri Baburov](https://github.com/buriy/spacy-ru) was far more accurate.  
 
-Additionally, Scattertext has a very large memory footprint. The readme states that scattertext is only for "small-to-medium-sized corpora."  I was able to process the entire corpus.  It took three days using a machine with a 6-core Xeon processor and 64GB of RAM. One the first run it ran out of memory, so I created a 2TB swapfile. The process used as much as 100GB of memory.  The end result is a 10GB HTML file which I am not able to load in the browser.         
+Additionally, Scattertext has a very large memory footprint. The readme states that scattertext is only for "small-to-medium-sized corpora."  However, I was able to process the entire corpus.  It took three days using a machine with a 6-core Xeon processor and 64GB of RAM. One the first run it ran out of memory, so I created a 2TB swapfile. The process used as much as 100GB of memory.  The end result is a 10GB HTML file which I am not able to load in the browser.         
 
 ```python 
 import scattertext as st
@@ -73,7 +73,7 @@ html = st.produce_scattertext_explorer(corpus,
 open("full_output_novyi_mir.html", 'wb').write(html.encode('utf-8'))
 ```
 
-I tested various samples to find a threshold for the scattertext visualization.  Files for 1000 and 500 text were too large to load in the browser.  A sample of 200 seems to be a good size for scattertexts. 
+I tested various samples to find a threshold for the scattertext visualization.  Files with 1000 and 500 texts were too large to load in the browser.  A sample of 200 seems to be a good size for scattertexts. 
 
 *Random sample of 100 texts comparing New World against all other journals. Click on the image to load the interactive page, please note that it takes 10-15 minutes to load in the browser*
 [![](https://github.com/apjanco/dashboard/raw/master/textviz.jpg)](http://htmlpreview.github.io/?https://www.github.com/apjanco/dashboard/raw/master/sample100.html)
@@ -81,13 +81,13 @@ I tested various samples to find a threshold for the scattertext visualization. 
 *Random sample of 200 texts comparing New World against all other journals. Image only.*
 [![](https://github.com/apjanco/dashboard/raw/master/220_nzh.png)](https://github.com/apjanco/dashboard/raw/master/220_nzh.png)
 
-Nonetheless, scattertext can be used to produce useful data about the entire text corpus.  Using the following, we can print out the 100 most-distinctive terms for the journal *Novyi Mir*.    
+Nonetheless, scattertext can be used to produce useful data about the entire text corpus.  Using the following, we can print out the 100 most distinctive terms for the journal *Novyi mir*.    
 ```python
 term_freq_df = corpus.get_term_freq_df()
 term_freq_df['Новый Мир freq'] = corpus.get_scaled_f_scores('Новый Мир')
 pprint(list(term_freq_df.sort_values(by='Новый Мир freq', ascending=False).index[:100]))
 ```
-This method can be repeated programmatically for all of the journals in the corpus using all of the texts and not just a sample.  This method can be applied to other categories as well simply by changing the value in `category_col` in CorpusFromPandas() to author, year, genre and so on.  What terms most distinguish poetry from verse?  What terms distinguish an author?    
+This method can be repeated programmatically for all of the journals in the corpus using all of the texts and not just a sample.  This method can be applied to other categories simply by changing the value in `category_col` in CorpusFromPandas() to author, year, genre and so on.  What terms most distinguish poetry from verse?  What terms distinguish an author?    
 
 *example of a plot for a single author. click for slow-loading interactive version.*
 [![](https://github.com/apjanco/dashboard/raw/master/stepanov.png)](http://htmlpreview.github.io/?https://github.com/apjanco/dashboard/raw/master/output_stepanov.html)
