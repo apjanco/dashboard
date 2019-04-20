@@ -18,7 +18,10 @@ The current dashboard was created with [Dash](https://plot.ly), which serves the
 The dashboard has three elements: a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  
 
 ## Need help from class
-I believe that the scatterplot shows the number of total articles for a journal on the y-axis and authors' names on the x-axis. As the dates change in the slider, the callback function updates the dataframe used in the scatterplot: 
+I believe that the scatterplot shows the number of total articles for a journal on the y-axis and author's name on the x-axis. As the dates change in the slider, the callback function updates the dataframe used for the scatterplot.  
+Is the x value the total number of articles published by an author in a journal?  
+The total articles for a journal?  
+I really like the clusters, but I do not fully understand what Pandas is doing to the data and what's being displayed.  Nonetheless, it seems to be what I'm trying to get. 
 
 [app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py)
 ```python
