@@ -17,17 +17,32 @@ The current dashboard was created with [Dash](https://plot.ly), which serves the
 
 The dashboard has three elements: a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  
 
+## Need help from class
 I believe that the scatterplot shows the number of total articles for a journal on the y-axis and authors' names on the x-axis. As the dates change in the slider, the callback function updates the dataframe used in the scatterplot: 
 
 [app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py)
 ```python
+@app.callback(
+    Output('graph-with-slider', 'figure'),
+    [Input('slider', 'value')])
+def update_figure(value):
+    filtered_df = df[df.year.isin(list(uniqueYear[:value+1]))] # uniqueYear is a list of year values, value is an index of that list 
+    year = filtered_df['year'].value_counts().to_frame()
 
-# filtered dataframe given the year in the slider
-filtered_df = df[df.year.isin(list(uniqueYear[:value+1]))]
-
-#data for x axis
-year = filtered_df['year'].value_counts().to_frame()
-```
+    traces = []
+    for i in filtered_df.journal.unique():
+            df_by_journal = filtered_df[filtered_df['journal'] == i]
+            traces.append(go.Scatter(
+                x=df_by_journal['author'],
+                y=df_by_journal.count(),
+                mode='markers',
+                opacity=0.7,
+                marker={
+                    'size': 15,
+                    'line': {'width': 0.5, 'color': 'white'}
+                },
+                name=i
+            ))```
 
 The points are color-coded by journal. This makes it possible to identify clusters of authors that published with a common journal.  This is a key interest for my researcher. I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
 
