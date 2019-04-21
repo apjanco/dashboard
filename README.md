@@ -17,13 +17,7 @@ The current dashboard was created with [Dash](https://plot.ly), which serves the
 
 The dashboard has three elements: a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  
 
-## Need help from the class
-I believe that the scatterplot shows the number of total articles for a journal on the y-axis and an author on the x-axis. As the dates change in the slider, the callback function updates the dataframe used for the scatterplot.  
-
-* Is the y value the total number of articles published by an author in a journal?  
-* The total articles published in a journal?  
-
-I really like the clusters, but I do not fully understand what Pandas is doing to the data and what's being displayed.  Nonetheless, it seems to be what I'm trying to get. 
+The scatterplot shows a point for each publication by an author in a journal.  Each column along the x-axis should show each of the journals that they published with along with the number of articles reflected in the y-axis. As the dates change in the slider, the callback function updates the dataframe used for the scatterplot.  
 
 [app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py)
 *based on example from the [Dash documentation](https://dash.plot.ly/getting-started-part-2)*
@@ -40,7 +34,7 @@ def update_figure(value):
             df_by_journal = filtered_df[filtered_df['journal'] == i]
             traces.append(go.Scatter(
                 x=df_by_journal['author'], # Here is the data for the x axis
-                y=df_by_journal.count(),   # Here is  the data for the y axis
+                y=df_by_journal['author'].value_counts(),   # Here is the data for the y axis
                 mode='markers',
                 opacity=0.7,
                 marker={
@@ -51,7 +45,7 @@ def update_figure(value):
             ))
 ```
 
-The points are color-coded by journal. This makes it possible to identify clusters of authors that published with a common journal.  This is a key interest for my researcher. I look forward to their feedback on the visualization.  It is possible to zoom in on a particular cluster to see the names of the authors and the journal on hover.   
+## Scatter plots for text (scattertext)  
 
 My project partner is particularly interested in relationships between texts, authors, and journals. Are there differences in the use of words and phrases (lexical features) that clearly distinguish one journal from another?  In order to visualize these differences, I am using a Python library called [scattertext](https://github.com/JasonKessler/scattertext) by Jason Kessler (see [Kessler 2017](https://arxiv.org/pdf/1703.00565.pdf)). The scattertext explorer creates a graph that helps to visualize what features most distinguish a text or category of texts from the rest of the dataset. For example, what terms best distinguish texts published in *Novyi mir* (*New World*) as opposed to all other journals?   
 
