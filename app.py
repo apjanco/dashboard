@@ -170,7 +170,7 @@ def update_figure(value):
             df_by_journal = filtered_df[filtered_df['journal'] == i]
             traces.append(go.Scatter(
                 x=df_by_journal['author'],
-                y=df_by_journal.count(),
+                y=df_by_journal['author'].value_counts(),
                 mode='markers',
                 opacity=0.7,
                 marker={
