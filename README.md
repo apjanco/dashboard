@@ -27,9 +27,10 @@ The scatterplot shows a point for each publication by an author in a journal.  E
     [Input('slider', 'value')],
 )
 def update_figure(value):
+    # uniqueYear is a list of year values, value is an index value for that list
     filtered_df = df[
         df.year.isin(list(uniqueYear[: value + 1]))
-    ]  # uniqueYear is a list of year values, value is an index of that list
+    ]  
     year = filtered_df['year'].value_counts().to_frame()
 
     traces = []
@@ -39,12 +40,16 @@ def update_figure(value):
         ]
         traces.append(
             go.Scatter(
+ 
+                # Here is the data for the x axis
                 x=df_by_journal[
                     'author'
-                ],  # Here is the data for the x axis
+                ],  
+                
+                # Here is the data for the y axis
                 y=df_by_journal[
                     'author'
-                ].value_counts(),  # Here is the data for the y axis
+                ].value_counts(),  
                 mode='markers',
                 opacity=0.7,
                 marker={
