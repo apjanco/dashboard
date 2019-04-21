@@ -24,25 +24,40 @@ The scatterplot shows a point for each publication by an author in a journal.  E
 ```python
 @app.callback(
     Output('graph-with-slider', 'figure'),
-    [Input('slider', 'value')])
+    [Input('slider', 'value')],
+)
 def update_figure(value):
-    filtered_df = df[df.year.isin(list(uniqueYear[:value+1]))] # uniqueYear is a list of year values, value is an index of that list 
+    filtered_df = df[
+        df.year.isin(list(uniqueYear[: value + 1]))
+    ]  # uniqueYear is a list of year values, value is an index of that list
     year = filtered_df['year'].value_counts().to_frame()
 
     traces = []
     for i in filtered_df.journal.unique():
-            df_by_journal = filtered_df[filtered_df['journal'] == i]
-            traces.append(go.Scatter(
-                x=df_by_journal['author'], # Here is the data for the x axis
-                y=df_by_journal['author'].value_counts(),   # Here is the data for the y axis
+        df_by_journal = filtered_df[
+            filtered_df['journal'] == i
+        ]
+        traces.append(
+            go.Scatter(
+                x=df_by_journal[
+                    'author'
+                ],  # Here is the data for the x axis
+                y=df_by_journal[
+                    'author'
+                ].value_counts(),  # Here is the data for the y axis
                 mode='markers',
                 opacity=0.7,
                 marker={
                     'size': 15,
-                    'line': {'width': 0.5, 'color': 'white'}
+                    'line': {
+                        'width': 0.5,
+                        'color': 'white',
+                    },
                 },
-                name=i
-            ))
+                name=i,
+            )
+        )
+
 ```
 
 ## Scatter plots for text (scattertext)  
@@ -61,10 +76,15 @@ import pandas as pd
 import numpy as np
 
 # Create a connection to the MySql database server
-db_connection = sql.connect(host='localhost', database='', user='', password='')
+db_connection = sql.connect(
+    host='localhost', database='', user='', password=''
+)
 
 # Create a pandas dataframe from a sql query.  In this case we're selecting 100 random entries with text
-df = pd.read_sql("SELECT journal, title, text FROM catalog_tableofcontents WHERE text NOT LIKE '' ORDER BY RAND() LIMIT 100", con=db_connection)
+df = pd.read_sql(
+    "SELECT journal, title, text FROM catalog_tableofcontents WHERE text NOT LIKE '' ORDER BY RAND() LIMIT 100",
+    con=db_connection,
+)
 df = df.replace(['', 'null'], [np.nan, np.nan])
 
 # Load the spaCy Russian language model
@@ -72,21 +92,24 @@ nlp = spacy.load('spacy-ru/ru2')
 nlp.add_pipe(nlp.create_pipe('sentencizer'))
 
 # Create a scattertext object using the texts and journal categories.
-corpus = st.CorpusFromPandas(df,
-                             category_col='journal',
-                             text_col='text',
-                             nlp=nlp).build()
+corpus = st.CorpusFromPandas(
+    df, category_col='journal', text_col='text', nlp=nlp
+).build()
 
 # Generate the D3 visualization
-html = st.produce_scattertext_explorer(corpus,
-          category='Новый Мир',
-          category_name='Новый Мир',
-          not_category_name='Other',
-          width_in_pixels=1000,
-          metadata=df['title'])
-          
-# Save the html to a file 
-open("full_output_novyi_mir.html", 'wb').write(html.encode('utf-8'))
+html = st.produce_scattertext_explorer(
+    corpus,
+    category='Новый Мир',
+    category_name='Новый Мир',
+    not_category_name='Other',
+    width_in_pixels=1000,
+    metadata=df['title'],
+)
+
+# Save the html to a file
+open("full_output_novyi_mir.html", 'wb').write(
+    html.encode('utf-8')
+)
 ```
 
 I tested various samples to find a threshold for the scattertext visualization.  Files with 1000 and 500 texts were too large to load in the browser.  A sample of 200 seems to be a good size for scattertexts. 
