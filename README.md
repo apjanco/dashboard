@@ -9,7 +9,7 @@ There is a website in Russia called [Journal Room](http://magazines.russ.ru/) (*
 
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|*by journal* <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_journal1.png">  blah |*by genre* <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_genre1.png">|
+|*by journal* <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_journal1.png">|*by genre* <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_genre1.png">|
 |*by author* <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_author1.png">  |*by year*<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_year.png">|
 
 The chart above shows that the journals *Banner* and *New World* have, by far, the largest number of texts in the corpus.  By genre, the most prominent types of text are poetry (*stikhi*) and stories (*rasskazy*).  After cleaning the genre titles, poetry is clearly the most prominent genre of text. 
