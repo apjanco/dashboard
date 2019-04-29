@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="https://raw.githubusercontent.com/apjanco/dashboard/master/justifiedGallery.css" />
-<script src="https://raw.githubusercontent.com/apjanco/dashboard/master/jquery.justifiedGallery.js"></script>
-
 # Exploring Texts from Russian Journals
 
 *click on the image to load the interactive dashboard*
@@ -12,18 +9,10 @@ There is a website in Russia called [Journal Room](http://magazines.russ.ru/) (*
 
 *entries by journal, genre and author*  
 
-<div id="mygallery" >
-    <a href="https://github.com/apjanco/dashboard/raw/master/by_journal1.png">
-        <img alt="Title 1" src="https://github.com/apjanco/dashboard/raw/master/by_journal1.png"/>
-    </a>
-    <a href="https://github.com/apjanco/dashboard/raw/master/by_genre1.png">
-        <img alt="Title 2" src="https://github.com/apjanco/dashboard/raw/master/by_genre1.png"/>
-    </a>
-    <a href="https://github.com/apjanco/dashboard/raw/master/by_author1.png">
-        <img alt="Title 2" src="https://github.com/apjanco/dashboard/raw/master/by_author1.png"/>
-    </a>
-</div>
-
+| | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_journal1.png">  blah |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_genre1.png">|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_author1.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_year.png">|
 
 The chart above shows that the journals *Banner* and *New World* have, by far, the largest number of texts in the corpus.  By genre, the most prominent types of text are poetry (*stikhi*) and stories (*rasskazy*).  After cleaning the genre titles, poetry is clearly the most prominent genre of text. 
 
