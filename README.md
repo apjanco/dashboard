@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="css/justifiedGallery.css" />
-<script>
-  $.getScript("https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.js");
-</script>
 # Exploring Texts from Russian Journals
 
 *click on the image to load the interactive dashboard*
