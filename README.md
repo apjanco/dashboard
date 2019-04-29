@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://raw.githubusercontent.com/apjanco/dashboard/master/justifiedGallery.css" />
+<script src="https://raw.githubusercontent.com/apjanco/dashboard/master/jquery.justifiedGallery.js"></script>
+
 # Exploring Texts from Russian Journals
 
 *click on the image to load the interactive dashboard*
