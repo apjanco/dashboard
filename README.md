@@ -9,7 +9,7 @@ There is a website in Russia called [Journal Room](http://magazines.russ.ru/) (*
 
 *entries by journal, genre and author*  
 <link rel="stylesheet" href="css/justifiedGallery.css" />
-<script src="js/jquery.justifiedGallery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.js"></script>
 <div id="mygallery" >
     <a href="https://github.com/apjanco/dashboard/raw/master/by_journal1.png">
         <img alt="Title 1" src="https://github.com/apjanco/dashboard/raw/master/by_journal1.png"/>
