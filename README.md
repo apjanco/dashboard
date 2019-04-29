@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/justifiedGallery.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.js"></script>
 # Exploring Texts from Russian Journals
 
 *click on the image to load the interactive dashboard*
@@ -8,8 +10,7 @@ This is a project to create a dashboard that will help a researcher at Ohio Stat
 There is a website in Russia called [Journal Room](http://magazines.russ.ru/) (*Zhurnal'nyi zal*) that has operated since the late 1990s and has the machine-readable text of 38 major thick journals beginning in 1992 to 2018. They recently posted that the site will no longer be updated. It is quite likely that the site will go offline in the near future. To save this remarkable resource, I scraped 76,296 texts from Journal Room.  Using [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), I traversed the table of contents for each journal issue to record a text's author, title, genre, journal, year, issue and the full text of the piece (when available).  I have full text for 69,532 of the entries.  The full corpus is currently stored in a 5Gb MySql database. 
 
 *entries by journal, genre and author*  
-<link rel="stylesheet" href="css/justifiedGallery.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.js"></script>
+
 <div id="mygallery" >
     <a href="https://github.com/apjanco/dashboard/raw/master/by_journal1.png">
         <img alt="Title 1" src="https://github.com/apjanco/dashboard/raw/master/by_journal1.png"/>
