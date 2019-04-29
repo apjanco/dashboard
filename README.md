@@ -7,12 +7,10 @@ This is a project to create a dashboard that will help a researcher at Ohio Stat
 
 There is a website in Russia called [Journal Room](http://magazines.russ.ru/) (*Zhurnal'nyi zal*) that has operated since the late 1990s and has the machine-readable text of 38 major thick journals beginning in 1992 to 2018. They recently posted that the site will no longer be updated. It is quite likely that the site will go offline in the near future. To save this remarkable resource, I scraped 76,296 texts from Journal Room.  Using [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), I traversed the table of contents for each journal issue to record a text's author, title, genre, journal, year, issue and the full text of the piece (when available).  I have full text for 69,532 of the entries.  The full corpus is currently stored in a 5Gb MySql database. 
 
-*entries by journal, genre and author*  
-
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_journal1.png">  blah |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://user-images.githubusercontent.com/297678/29892310-03e92256-8d83-11e7-9b58-986dcb6f702e.png">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_genre1.png">|
-|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_author1.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_year.png">|
+|*by journal* <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_journal1.png">  blah |*by genre* <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_genre1.png">|
+|*by author* <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_author1.png">  |*by year*<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/apjanco/dashboard/raw/master/by_year.png">|
 
 The chart above shows that the journals *Banner* and *New World* have, by far, the largest number of texts in the corpus.  By genre, the most prominent types of text are poetry (*stikhi*) and stories (*rasskazy*).  After cleaning the genre titles, poetry is clearly the most prominent genre of text. 
 
