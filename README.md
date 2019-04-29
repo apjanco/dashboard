@@ -13,7 +13,7 @@ There is a website in Russia called [Journal Room](http://magazines.russ.ru/) (*
 
 [![](https://github.com/apjanco/dashboard/raw/master/by_genre1.png)](https://github.com/apjanco/dashboard/raw/master/by_genre1.png) 
 
-The chart above shows that the journals *Banner* and *New World* have, by far, the largest number of texts in the corpus.  By genre, the most prominent types of text are poetry (*stikhi*) and stories (*rasskazy*).  Further normalization of the genre titles will lend better results. For example, there are "genres" in the table of contents for "Poems" (*Stikhi*), "poems" (*stikhi*), "poetry" (*stikhtvoreniia*), "poem" (*stikhtvorenie*) and "and other poems" (*i dr. stikhi*).   
+The chart above shows that the journals *Banner* and *New World* have, by far, the largest number of texts in the corpus.  By genre, the most prominent types of text are poetry (*stikhi*) and stories (*rasskazy*).  After cleaning the genre titles, poetry is clearly the most prominent genre of text. 
 
 For current purposes, I created a CSV file of the text metadata, which can be downloaded from [here](https://haverford.box.com/shared/static/votuay8cy1uc7e61r27opxnynxb11sp3.csv).  The metadata dataset is free to use and distribute.  The full-text corpus contains content that could be restricted by Section IV of the Civil Code of the Russian Federation. Online content is largely interpreted by Russian law as an open space where content is subject to "free use" ([Sobol 2016](https://rm.coe.int/1680783347)). The footer of each page shows © 1996 - 2017 Journal Room. It would be worth contacting Journal Room before sharing the full dataset, but it is likely that use of the corpus for research falls under the legal understanding of "free use."     
 
