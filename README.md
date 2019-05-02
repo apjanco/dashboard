@@ -28,7 +28,8 @@ By contrast, there is a great deal of overlap between the authors in *New World*
 
 ![](https://github.com/apjanco/dashboard/raw/master/Screen%20Shot%202019-05-02%20at%205.00.32%20AM.png) 
 
-*technical details* 
+*technical details*   
+
 The current dashboard was created with [Dash](https://plot.ly), which serves the plotly Python library using Flask and React.js. You can find the dashboard [here](http://104.236.220.106:8000/). I have also included [app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py) which will run locally with dash and pandas.  Just `pip install dash` in your preferred virtualenv, clone the repository, `cd dashboard` and then `$ python app.py`.  The current app is running with Flask. I am currently working to serve the application with nginx and uWsgi.  I have also experimented with [django-plotly-dash](https://github.com/GibbsConsulting/django-plotly-dash) for adding Dash apps to Django projects.       
 
 The dashboard has three elements: a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  
