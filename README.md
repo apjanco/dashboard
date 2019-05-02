@@ -1,7 +1,7 @@
 # Exploring Texts from Russian Journals
 
 *click on the image to load the interactive dashboard*
-[![](https://github.com/apjanco/dashboard/raw/master/Screen%20Shot%202019-04-11%20at%202.57.13%20PM.png)](http://104.236.220.106:8000/)
+[![](https://github.com/apjanco/dashboard/raw/master/Screen%20Shot%202019-05-02%20at%207.52.57%20AM.png)](http://104.236.220.106:8000/)
 
 This is a project to create a dashboard that will help a researcher at Ohio State University who studies Russian literary journals. Since the 1800s, journals have been a common way for many Russians to stay connected with contemporary culture.  In the 1970s and 1980s print runs were often over a million copies per issue. These "thick journals" are often 300-500 pages per issue (see [Bykov 2016](https://pdfs.semanticscholar.org/9cc6/7dc6af51ef662785251651b8a8aa166d3249.pdf)). Solzhenitsyn, for example, was first published in a thick journal.
 
@@ -16,6 +16,19 @@ The chart above shows that the journals *Banner* and *New World* have, by far, t
 
 For current purposes, I created a CSV file of the text metadata, which can be downloaded from [here](https://haverford.box.com/shared/static/votuay8cy1uc7e61r27opxnynxb11sp3.csv).  The metadata dataset is free to use and distribute.  The full-text corpus contains content that could be restricted by Section IV of the Civil Code of the Russian Federation. Online content is largely interpreted by Russian law as an open space where content is subject to "free use" ([Sobol 2016](https://rm.coe.int/1680783347)). The footer of each page shows © 1996 - 2017 Journal Room. It would be worth contacting Journal Room before sharing the full dataset, but it is likely that use of the corpus for research falls under the legal understanding of "free use."     
 
+*using the dashboard*
+
+The dashboard is still a work in progress.  To reduce loading time, I have limited the dataset to the four most common journals.  The visualization makes it easy to see which authors published most with a particular publication.  The higher a point on the y-axis, the more texts an author published with that particular journal.  In theory, if that same author published in other journals, there are other points with that data.  In the future, it would be useful to produce bar graphs for each author with the relative number of publications in each journal.  At present, it is difficult to find any one author's points in the scatter plot.  
+
+However, the current visualization is a valuable tool for identifying overlap in authors between journals.  The image below shows the near total lack of overlap between the authors published in *New World* as compared to *Friendship of the Peoples*.  This is expected given that *Friendship* published mostly non-Russian authors from the Soviet republics.  *New World* published more authors from the capitals. 
+
+![](https://github.com/apjanco/dashboard/raw/master/Screen%20Shot%202019-05-02%20at%204.56.51%20AM.png)
+
+By contrast, there is a great deal of overlap between the authors in *New World* and *Banner*. 
+
+![](https://github.com/apjanco/dashboard/raw/master/Screen%20Shot%202019-05-02%20at%205.00.32%20AM.png) 
+
+*technical details* 
 The current dashboard was created with [Dash](https://plot.ly), which serves the plotly Python library using Flask and React.js. You can find the dashboard [here](http://104.236.220.106:8000/). I have also included [app.py](https://raw.githubusercontent.com/apjanco/dashboard/master/app.py) which will run locally with dash and pandas.  Just `pip install dash` in your preferred virtualenv, clone the repository, `cd dashboard` and then `$ python app.py`.  The current app is running with Flask. I am currently working to serve the application with nginx and uWsgi.  I have also experimented with [django-plotly-dash](https://github.com/GibbsConsulting/django-plotly-dash) for adding Dash apps to Django projects.       
 
 The dashboard has three elements: a date slider, a datatable and a scatterplot.  I was not able to use a RangeSlider. The slider is currently working but selects a time period between the minimum value and the time selected.  The table displays the raw data and can be sorted and viewed with forward and backward buttons.  I would like to add a search field if possible.  
